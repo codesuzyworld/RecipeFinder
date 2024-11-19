@@ -17,6 +17,19 @@ async function getRecipeByIngredient(ingredient) {
     return await response.json(); 
 }
 
+async function getRecipeInfo(id) {
+    const reqUrl = `${spoonacular}/recipes/${id}/information?apiKey=${apiKey}`;
+    const response = await fetch(reqUrl, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    return await response.json();
+}
+
 module.exports = {
     getRecipeByIngredient,
-  };
+    getRecipeInfo,
+}

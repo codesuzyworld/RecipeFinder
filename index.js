@@ -5,7 +5,8 @@ const dotenv = require("dotenv");
 
 //Import the methods for the APIs
 const { getProductByBarcode } = require("./modules/openfoodfacts/openfoodfactsapi");
-const { getRecipeByIngredient } = require("./modules/spoonacular/spoonacularapi");
+const { getRecipeByIngredient, getRecipeInfo } = require("./modules/spoonacular/spoonacularapi");
+
 
 
 
@@ -64,15 +65,32 @@ app.post("/recipes", async (req, res) => {
     try {
         const recipes = await getRecipeByIngredient(ingredient);
 
+        const recipesWithDetails = await Promise.all(
+            recipes.map(async (recipe) => {
+                try {
+                    const recipeInfo = await getRecipeInfo(recipe.id);
+                    return { 
+                        ...recipe, 
+                        pricePerServing: recipeInfo.pricePerServing || "N/A",
+                        readyInMinutes: recipeInfo.readyInMinutes || "N/A",
+                        servings: recipeInfo.servings || "N/A"
+                    };
+                } catch (error) {
+                    console.error(`Can't fetch info for recipe ID ${recipe.id}:`, error);
+                    return { ...recipe, pricePerServing: "Unavailable" };
+                }
+            })
+        );
+
         // the page will render the searched ingredient info and name
         res.render("index", { 
             title: "Generate Meals", 
             food: { 
                 product_name: ingredient,
-                brands: req.body.brands, // Pass the brand name from the previous form
-                ingredients_text: req.body.ingredients_text // Pass the ingredients list from the previous form
+                brands: req.body.brands,
+                ingredients_text: req.body.ingredients_text
             },
-            recipes 
+            recipes: recipesWithDetails
         });
     } catch (error) {
         console.error("Error fetching recipes:", error);

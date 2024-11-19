@@ -26,7 +26,7 @@ block main-content
     // Food Detail Section
     if food
       div#food-details
-        p Ingredient Found:
+        h3 Ingredient Found:
         h2 #{food.product_name}
         p Brand: #{food.brands || 'No brands'}
         p Ingredients: #{food.ingredients_text || 'No ingredient information available'}
@@ -50,7 +50,11 @@ block main-content
                 
                 div.recipe-info
                   h3 #{recipe.title}
-                  p Ingredients:
+                  div.recipe-pill
+                    p.pillblue Cost Per Serving: $ #{recipe.pricePerServing}
+                    p.pillorange Ready In: #{recipe.readyInMinutes} minutes
+                    p.pillgreen Servings: #{recipe.servings}
+                  h4 Ingredients:
                   ul
                     each used in recipe.usedIngredients
                       li #{used.name}
