@@ -71,7 +71,10 @@ app.post("/recipes", async (req, res) => {
                     const recipeInfo = await getRecipeInfo(recipe.id);
                     return { 
                         ...recipe, 
-                        pricePerServing: recipeInfo.pricePerServing || "N/A",
+                        //The price is in cents, not dollars
+                        pricePerServing: recipeInfo.pricePerServing
+                            ? (recipeInfo.pricePerServing / 100).toFixed(2)
+                            : "N/A",
                         readyInMinutes: recipeInfo.readyInMinutes || "N/A",
                         servings: recipeInfo.servings || "N/A"
                     };
