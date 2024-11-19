@@ -1,0 +1,59 @@
+extends layout
+
+block main-content
+  h1.title Find a recipe from a food in your fridge!
+
+  div#search-wrapper
+    // Search Section
+    div#search-section
+      // Barcode Search
+      div#barcode-section
+        h3 Get recipe by Barcode
+        form(action="/scan", method="post")
+          label(for="barcode") Barcode:
+          input#barcode(type="text", name="barcode", value="066800000152", required)
+          button(type="submit") Search
+
+      // Ingredient Search
+      div#ingredient-section
+        h3 Get recipe by Ingredient Name
+        form(action="/recipes", method="post")
+          label(for="ingredient") Ingredient Name:
+          input#ingredient(type="text", name="ingredient", placeholder="e.g., chicken", required)
+          button(type="submit") Search Recipes
+
+  div#results-wrapper
+    // Food Detail Section
+    if food
+      div#food-details
+        p Ingredient Found:
+        h2 #{food.product_name}
+        p Brand: #{food.brands || 'No brands'}
+        p Ingredients: #{food.ingredients_text || 'No ingredient information available'}
+
+        // Form to search recipes for the product_name
+        form(action="/recipes", method="post")
+          input(type="hidden", name="ingredient", value=food.product_name)
+          input(type="hidden", name="brands", value=food.brands)
+          input(type="hidden", name="ingredients_text", value=food.ingredients_text)
+          button(type="submit") Search for Recipes
+
+    // Recipe Suggestions Section
+    if recipes
+      div#recipe-suggestions
+        h2.title Recipe Suggestions
+        ul
+          each recipe in recipes
+            li.recipe-card
+              div.card-content
+                img(src=recipe.image, alt=`Image of ${recipe.title}` class="recipe-image")
+                
+                div.recipe-info
+                  h3 #{recipe.title}
+                  p Ingredients:
+                  ul
+                    each used in recipe.usedIngredients
+                      li #{used.name}
+                    each missed in recipe.missedIngredients
+                      li #{missed.name}
+                  a(href=`https://spoonacular.com/recipes/${recipe.title.replace(/ /g, "-")}-${recipe.id}` target="_blank") View Recipe

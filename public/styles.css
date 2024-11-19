@@ -1,0 +1,250 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    background-color: #F4F2EE;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    font-family: 'Montserrat', sans-serif;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+/* Header Styling */
+#header {
+    min-width: 800px;
+    background-color: #f9f9f9;
+    border-radius: 50px;
+    padding: 20px 40px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+/* Header Content */
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Site Name */
+#site-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px; 
+    font-weight: bold;
+    color: #cb743a; 
+    margin: 0;
+}
+
+/* Site Name Link */
+#site-name a {
+    text-decoration: none;
+    color: inherit; 
+}
+
+.title{
+    text-align: center;
+}
+
+/* Nav */
+#menu {
+    display: flex;
+    gap: 20px;
+}
+
+#menu ul {
+    list-style-type: none; 
+    margin: 0;
+    padding: 0;
+    display: flex; 
+    gap: 20px; 
+}
+
+#menu li {
+    font-size: 18px; 
+}
+
+#menu a {
+    text-decoration: none; 
+    color: #cb743a;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#menu a:hover {
+    color: #833e3e; 
+}
+
+
+/* Search sections */
+#search-wrapper {
+    width:1200px;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+#search-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Barcode and ingredient divs */
+#barcode-section,
+#ingredient-section {
+    flex: 1;
+    flex-direction: row;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Wrapper food deets and recipe */
+#results-wrapper {
+    width:1000px;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+/* Food details */
+#food-details {
+    background-color: #cbc2be;
+    padding: 20px 50px 20px 50px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Headings */
+h2, h3 {
+    margin-bottom: 15px;
+}
+
+
+/* Inputs */
+form {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 10px; 
+}
+
+input[type="text"] {
+    flex: 1; 
+    max-width: 250px;
+    padding: 10px;
+    border: 1px solid #9d6464;
+    border-radius: 5px;
+}
+
+button {
+    flex-shrink: 0;
+    padding: 10px 15px;
+    background-color: #cb743a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #e18d55;
+}
+
+/* Recipe suggestions */
+#recipe-suggestions {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+/* Recipe card layout */
+.recipe-card {
+    display: flex;
+    align-items: stretch;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width: 800px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Recipe image */
+.recipe-image {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover; 
+    margin-right: 15px;
+    display: block; 
+    flex-shrink: 0; 
+}
+
+/* Recipe information */
+.recipe-info {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    align-items: stretch; 
+}
+
+/* Headings */
+h2, h3 {
+    margin-bottom: 15px;
+}
+
+/* Ingredient lists */
+.recipe-info ul {
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+/* Recipe link*/
+.recipe-info a {
+    width: 120px;
+    background-color:#bd7171;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.recipe-info a:hover {
+    background-color: #965858;
+}
+
+.recipe-info a:active {
+    background-color:#965858;
+}
