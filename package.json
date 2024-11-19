@@ -4,6 +4,7 @@
   "description": "a diet app made in express",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "dev": "nodemon ./index.js",
     "ui": "browser-sync start --config bs-config.js"
   },
